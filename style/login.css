@@ -1,0 +1,165 @@
+.popup {
+    padding: 40px 15px;
+    height: fit-content;
+    width: 250px;
+    position: fixed;
+    top: 50%;
+    left: -50%;
+    transform: translate(-50%, -50%);
+    background-color: #3f5562;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 15px 5px 30px #00000020;
+    border: #3f5562 outset 5px;
+    color: #00c2cb;
+}
+
+.dimmer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.form h1{
+    font-size: 60px;
+    text-shadow: 15px 5px 30px #00000050;
+}
+
+.form input, .form a{
+    display: block;
+    margin-top: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form input {
+    height: 25px;
+    width: 95%;
+    padding: 5px;
+    color: #00c2cb;
+    background-color: #222d32;
+    border-radius: 15px;
+    border-style: solid;
+    transition: border-width 200ms, border-color 200ms, height 200ms;
+}
+
+.form input:hover {
+    border-color: #089aa2;
+    border-width: 3px;
+    height: 23px;
+}
+
+.form input:focus {
+    border-color: #00c2cb;
+    border-width: 3px;
+    height: 23px;
+}
+
+.closebutton {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 5px;
+    color: #00c2cb;
+    background-color: #3f5562;
+    border-radius: 15px;
+    border-style: solid;
+    transition: background-color 200ms;
+}
+
+.submitbutton {
+    width: 80%;
+    padding: 5px;
+    color: #00c2cb;
+    background-color: #3f5562;
+    border-radius: 15px;
+    border-style: solid;
+    transition: background-color 200ms;
+    display: block;
+    margin-top: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form button:hover {
+    background-color: #4e6978;
+}
+
+.form a {
+    color: #06929a;
+    font-size: 12px;
+}
+
+.formerror {
+    color: #e13535;
+    display: none;
+}
+
+.hangright {
+    position: relative;
+    top: 20px;
+    right: 20px;
+    float: right;
+}
+
+.stickright {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    float: right;
+}
+
+@keyframes slidein {
+    from {
+        left: -50%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes slideout {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 150%;
+    }
+}
+
+@keyframes shake {
+    0% {
+        left: 50%;
+    }
+    20% {
+        left: 55%;
+    }
+    40% {
+        left: 45%;
+    }
+    60% {
+        left: 55%;
+    }
+    80% {
+        left: 45%;
+    }
+    100% {
+        left: 50%;
+    }
+}
+
+@keyframes still {
+    100% {
+        left: 50%;
+    }
+}

@@ -1,0 +1,134 @@
+/* Remove margin and padding by default. */
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+/* Smoothen scroll behavior for nicer visual experience
+   And also for when JavaScript scrolling occurs.
+   We're also optimizing the speed of the images as image detail is not massively important.*/
+html {
+    scroll-behavior: smooth;
+    image-rendering: optimizeSpeed;
+}
+
+/* This will set default settings for the page.
+   And also tell the body to fill the entire page.*/
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 14 px;
+    font-family: sans-serif;
+    background-color: #485d6a;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Hide the scrollbar in webkit browsers */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Remove underline from all links*/
+a:link {
+    text-decoration: none;
+}
+
+/* Only show the underline when hovering on a link.*/
+a:hover {
+    text-decoration: underline;
+}
+
+/* Big break is used to add big gaps between elements.*/
+.bigbreak {
+    height: 80px;
+}
+
+/* The header for the entire site. */
+header {
+    height: 80px;
+    overflow: visible;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+header nav {
+    height: 50%;
+    background-color: #3f5562;
+    padding: 2px 10px;
+    transition: height 200ms;
+}
+
+/* The logo for the site. It'll slowly change color over 10 seconds before reversing the color change back to 0.*/
+header img {
+    display: inline;
+    height: 50px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 3%;
+    transition: opacity 200ms;
+    opacity: 0;
+}
+
+/* Links inside of the header should appear indented also and they should have borders too.
+   These borders should only be visible when pressing the button.*/
+header i {
+    display: inline;
+    color: #00c2cb;
+    margin-right: 3%;
+    font-size: 30px;
+    transition: opacity 300ms;
+    opacity: 0;
+}
+
+#arrow {
+    border: solid #00c2cb;
+    border-width: 0 6px 6px 0;
+    display: inline-block;
+    padding: 6px;
+    transform: translateX(-50%) rotate(45deg);
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transition: opacity 100ms;
+}
+
+/* The footer for the entire site.*/
+footer {
+    color: #6f8795;
+    background-color: #3f5562;
+    font-size: 9px;
+    text-shadow: #202c32;
+}
+
+/* The h1 element in the footer should be centered and be surrounded by spacing.*/
+footer h1 {
+    display: inline-block;
+    padding: 12px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes blur {
+    to {
+        filter: blur(30px);
+    }
+}
+
+/* Shrink the logo down when the window is less than 700px wide.*/
+@media only screen and (max-width: 700px) {
+    header h1 {
+        font-size: 18px;
+    }
+    header a {
+        font-size: 18px;
+    }
+}
