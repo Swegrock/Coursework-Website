@@ -20,7 +20,7 @@ let video = document.querySelector("video");
 let volumeButton = document.querySelector("#volume");
 let videoSlider = document.querySelector("#videoslider");
 
-//Set it up so clicking the disc will start the video and the video ending will "eject" the disc.
+//Set it up so clicking the disc will start the video and the video ending will eject the disc.
 disc.onclick = function() {insertDisc();}
 video.onended = function() {ejectDisc();}
 

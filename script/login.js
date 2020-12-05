@@ -5,6 +5,7 @@ let registerShowing = false;
 let loginWindow = document.querySelector("#login");
 let loginError = document.querySelector("#loginerror");
 let registerWindow = document.querySelector("#register");
+let registerForm = document.querySelector("#registerform");
 let registerError = document.querySelector("#registererror");
 let dimmer = document.querySelector(".dimmer");
 
@@ -98,24 +99,33 @@ function closeForms() {
 //When the register button is pressed.
 document.querySelector("#registerbutton").onclick = function() {
     //We want to make sure the inputs aren't empty and the user has checked the licence agreement.
-    if (document.querySelector("#registerusername").value != ""
-    && document.querySelector("#registerpassword").value != ""
-    && document.querySelector("#agreebox").checked
-    //We also want to make sure the username isn't already being used.
-    && localStorage.getItem(document.querySelector("#registerusername").value) == null){
-        //Then we can create a new user.
-        localStorage.setItem(document.querySelector("#registerusername").value, document.querySelector("#registerpassword").value);
-        //If all has worked we can now show the login form.
-        showLogin();
-    }
-    else {
-        //If not we need to notify the user we haven't been successful by showing the error message and shaking the window.
-        registerWindow.style.animation = "shake 300ms forwards";
-        setTimeout(() => {
-            registerWindow.style.animation = "still 0ms forwards";
-        }, 300);
+    if (!registerForm.checkValidity()){
+        //Shake the window to visually show something is wrong.
+        shakeWindow(registerWindow);
+        //Tell them they've not filled in all the details using the default validation message.
+        registerError.innerHTML = "Please fill in all the fields."
+        //Tell the user which field they're missing.
+        registerForm.reportValidity();
+        //Show the error message.
         registerError.style.display = "block";
+        //Return so the registration doesn't complete.
+        return;
     }
+    //We also want to make sure the username isn't already in use.
+    if (localStorage.getItem(document.querySelector("#registerusername").value) != null) {
+        //Shake the window to visually show something is wrong.
+        shakeWindow(registerWindow);
+        //Tell them the username is in use.
+        registerError.innerHTML = "Username is already in use.";
+        //Show the error message.
+        registerError.style.display = "block";
+        //Return so the registration doesn't complete.
+        return;
+    }
+    //Then we can create a new user.
+    localStorage.setItem(document.querySelector("#registerusername").value, document.querySelector("#registerpassword").value);
+    //If all has worked we can now show the login form.
+    showLogin();
 }
 
 //When the login button is pressed.
@@ -128,10 +138,14 @@ document.querySelector("#loginbutton").onclick = function() {
     }
     else {
         //If not we need to notify the user we haven't been successful by showing the error message and shaking the window.
-        loginWindow.style.animation = "shake 300ms forwards";
-        setTimeout(() => {
-            loginWindow.style.animation = "still 0ms forwards";
-        }, 300);
+        shakeWindow(loginWindow);
         loginError.style.display = "block";
     }
+}
+
+function shakeWindow(element) {
+    element.style.animation = "shake 300ms forwards";
+    setTimeout(() => {
+        element.style.animation = "still 0ms forwards";
+    }, 300);
 }

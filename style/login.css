@@ -107,14 +107,14 @@
 
 .hangright {
     position: relative;
-    top: 20px;
+    top: 23px;
     right: 20px;
     float: right;
 }
 
 .stickright {
     position: absolute;
-    top: 22px;
+    top: 25px;
     right: 20px;
     float: right;
 }

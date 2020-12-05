@@ -176,14 +176,14 @@
             </form>
         </div>
         <div class="popup" id="register">
-            <form class="form">
+            <form id="registerform" class="form">
                 <h1><i class="fas fa-id-badge"></i></h1>
-                <label id="registererror" class="formerror">Cannot create account</label>
-                <input id="registerusername" type="text" placeholder="Username">
-                <input id="registerpassword" type="password" placeholder="Password">
+                <label id="registererror" class="formerror"></label>
+                <input id="registerusername" type="text" placeholder="Username" autocomplete="username" required>
+                <input id="registerpassword" type="password" placeholder="Password" autocomplete="current-password" required>
                 <br/>
                 <label for="terms">Agree to terms and conditions?</label>
-                <input id="agreebox" type="checkbox" name="terms">
+                <input id="agreebox" type="checkbox" name="terms" required>
                 <button id="registerbutton" class="submitbutton" type="button">Register</button>
                 <button class="closebutton" type="button">X</button>
                 <a class="showlogin">Login to an account.</a>
