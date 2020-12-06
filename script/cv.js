@@ -1,30 +1,37 @@
-//Set the duration for swapping and delay between swapping.
-let swapDelay = 9000;
-let swapLength = 1000;
-//Get all of the cardstacks present on the page.
-let cardStacks = document.querySelectorAll(".cardstack");
-let animatingPanels = false;
-let lastPaneShown;
+//Variable determining whether tha panels or animating or not.
+var animatingPanels = false;
+//The last panel shown to the user.
+var lastPaneShown;
 
-//Reverse the cardstack so the first card will be shown, as usually elements stack incrementally according to their line position.
-cardStacks.forEach(cardStack => [...cardStack.children].reverse().forEach(card => cardStack.append(card)));
-window.setInterval(swapCards, swapDelay);
+//Set the duration for swapping and delay between swapping.
+const swapDelay = 9000;
+const swapLength = 1000;
+//Get all of the cardstacks present on the page.
+const cardStacks = document.querySelectorAll(".cardstack");
+
+//The starting method.
+function start() {
+    //Reverse the cardstack so the first card will be shown, as usually elements stack incrementally according to their line position.
+    cardStacks.forEach(cardStack => [...cardStack.children].reverse().forEach(card => cardStack.append(card)));
+    //Swap the cards every 'swapDelay'.
+    window.setInterval(swapCards, swapDelay);
+}
 
 //For each cardstack we want to swap a card, we'll delay this so each stack doesn't change at the same time.
 function swapCards(){
-    var index = 0;
+    let index = 0;
     cardStacks.forEach(cardStack => {
         setTimeout(() => {
             swapCard(cardStack);
         }, index);
         index += swapLength/2.0;
-    })
+    });
 }
 
 //Swap a card from the back of the stack to the front and play the animation for it.
 function swapCard(cardStack) {
     //Get the last child.
-    var endCard = cardStack.querySelector(".card:last-child");
+    let endCard = cardStack.querySelector(".card:last-child");
     //Set the animation for that child to swap.
     endCard.style.animation = "swap "+ swapLength +"ms forwards";
     setTimeout(() => {
@@ -39,9 +46,9 @@ function showProjectDescription(project) {
     //If a panel is currently animating we want to return and do nothing.
     if (animatingPanels) return;
     animatingPanels = true;
-    var time = 0;
+    let time = 0;
     //Get the id of the project according to the parameter passed in and then get its element.
-    var id = "#" + project.id + "description";
+    let id = "#" + project.id + "description";
     let newPaneShown = document.querySelector(id);
     //If a panel is currently shown or the panel is the same, we need to hide the currently shown panel.
     if (lastPaneShown != null || lastPaneShown == newPaneShown){
@@ -60,3 +67,6 @@ function showProjectDescription(project) {
         animatingPanels = false;
     }, time);
 }
+
+//Assign the DOM ready method.
+document.addEventListener('DOMContentLoaded', start, false);

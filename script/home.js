@@ -1,37 +1,118 @@
-let activateDisc = false;
-let playingDisc = false;
-let animatingDisc = false;
+//Disc variables.
+var activateDisc = false;
+var playingDisc = false;
+var animatingDisc = false;
 
-let volumeOn = true;
+//Variable which determines whether the hover video controls can be seen.
+var showingControls = false;
+
+//Variable which determines whether the volume is on or off and is used to distinguish whether to turn it on or off.
+var volumeOn = true;
 
 //Get the elements on the page.
-let page = document.querySelector("#page");
-let cover = document.querySelector("#videocover");
-let disc = document.querySelector("#disc");
+const page = document.querySelector("#page");
+const cover = document.querySelector("#videocover");
+const disc = document.querySelector("#disc");
 
-let playIcon = document.querySelector("#playicon");
-let pauseIcon = document.querySelector("#pauseicon");
+const playButton = document.querySelector("#play");
+const restartButton = document.querySelector("#restart");
+const rewindButton = document.querySelector("#rewind");
+const skipButton = document.querySelector("#skip");
+const endButton = document.querySelector("#end");
 
-let volumeOnIcon = document.querySelector("#volumeon");
-let volumeOffIcon = document.querySelector("#volumeoff");
+const playIcon = document.querySelector("#playicon");
+const pauseIcon = document.querySelector("#pauseicon");
 
-let videoContainer = document.querySelector("#videocontainer");
-let video = document.querySelector("video");
-let volumeButton = document.querySelector("#volume");
-let videoSlider = document.querySelector("#videoslider");
+const volumeOnIcon = document.querySelector("#volumeon");
+const volumeOffIcon = document.querySelector("#volumeoff");
 
-//Set it up so clicking the disc will start the video and the video ending will eject the disc.
-disc.onclick = function() {insertDisc();}
-video.onended = function() {ejectDisc();}
+const video = document.querySelector("video");
 
-//Attach each element to their equivalent function.
-document.querySelector("#restart").onclick = function() {resetVideo();}
-document.querySelector("#rewind").onclick = function() {rewindVideo();}
-document.querySelector("#skip").onclick = function() {skipVideo();}
-document.querySelector("#end").onclick = function() {ejectDisc();}
+const videoContainer = document.querySelector("#videocontainer");
+const volumeButton = document.querySelector("#volume");
+const videoSlider = document.querySelector("#videoslider");
 
-//For play if the disc isn't in, we want to insert it.
-document.querySelector("#play").onclick = function() {
+//The starting method.
+function start() {
+    //Set it up so clicking the disc will start the video and the video ending will eject the disc.
+    disc.addEventListener("click", insertDisc);
+    video.addEventListener("ended", ejectDisc);
+
+    //When the slider value is changed we want to set the video time to the slider value.
+    videoSlider.addEventListener("input", setVideoTime, false);
+    //Every time the current playing position of the video updates we'll set the slider accordingly.
+    video.addEventListener("timeupdate", setSliderPosition, false);
+    //The volume button checks if the volume is on and calls the correct method.
+    volumeButton.addEventListener("click", setVolume);
+    //The play button will either start the video or continue playing it.
+    playButton.addEventListener("click", playClicked);
+
+    //These buttons do what they say on the tin.
+    restartButton.addEventListener("click", resetVideo);
+    rewindButton.addEventListener("click", rewindVideo)
+    skipButton.addEventListener("click", skipVideo)
+    endButton.addEventListener("click", ejectDisc);
+
+    //We want to distinguish whether we should use pc or mobile interaction.
+    //Pc interaction occurs on hover where as mobile interaction occurs on press.
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        videoContainer.addEventListener('click', mobileControlsHandler);
+    }
+    else {
+        videoContainer.addEventListener("mouseover", showControls);
+        videoContainer.addEventListener("mouseleave", hideControls);
+    }
+}
+
+//For mobiles, as we don't have the ability to hover over, we'll accept clicking on the video to show and hide the controls.
+function mobileControlsHandler() {
+    if (!showingControls){
+        showControls();
+    }
+    else {
+        hideControls();
+    }
+}
+
+//Showing the hover controls.
+function showControls() {
+    videoSlider.style.opacity = 1;
+    volumeButton.style.opacity = 1;
+    showingControls = true;
+}
+
+//Hiding the hover controls.
+function hideControls() {
+    videoSlider.style.opacity = 0;
+    volumeButton.style.opacity = 0;
+    showingControls = false;
+}
+
+//Setting the video time.
+function setVideoTime() {
+    //The current time in the video is set as the slider value over the max slider value multiplied by the total length of the video.
+    video.currentTime = videoSlider.value / videoSlider.max * video.duration;
+}
+
+//Setting the slider position.
+function setSliderPosition() {
+    //The slide is set as the current time in the video over the total length of the video multiplied by the max slider value.
+    videoSlider.value = video.currentTime / video.duration * videoSlider.max;
+}
+
+//Setting the video volume.
+function setVolume() {
+    if (volumeOn){
+        turnVolumeOff();
+    }
+    else {
+        turnVolumeOn();
+    }
+}
+
+//Clicking the play button.
+function playClicked() {
+    //For play if the disc isn't in, we want to insert it.
     if (!activateDisc) {
         window.scrollTo(0, 0);
         insertDisc();
@@ -47,40 +128,6 @@ document.querySelector("#play").onclick = function() {
     }
 }
 
-//The volume button checks if the volume is on and calls the correct method.
-volumeButton.onclick = function() {
-    if (volumeOn){
-        turnVolumeOff();
-    }
-    else {
-        turnVolumeOn();
-    }
-}
-
-//Every time the current playing position of the video updates we'll set the slider accordingly.
-video.ontimeupdate = function() {
-    //The slide is set as the current time in the video over the total length of the video multiplied by the max slider value.
-    videoSlider.value = video.currentTime / video.duration * videoSlider.max;
-}
-
-//When the mouse is over the video we want to show the video slider and volume button.
-videoContainer.addEventListener('mouseover', function() {
-    videoSlider.style.opacity = 1;
-    volumeButton.style.opacity = 1;
-},false);
-
-//When the mouse leaves the video we want to hide the video slider and volume button.
-videoContainer.addEventListener('mouseout', function() {
-    videoSlider.style.opacity = 0;
-    volumeButton.style.opacity = 0;
-},false);
-
-//When the slider value is changed we want to set the video time to the slider value.
-videoSlider.addEventListener("input", function() {
-    //The current time in the video is set as the slider value over the max slider value multiplied by the total length of the video.
-    video.currentTime = videoSlider.value / videoSlider.max * video.duration;
-}, false);
-
 //Inserting the disc.
 function insertDisc() {
     //If the disc is already in eject it.
@@ -95,6 +142,7 @@ function insertDisc() {
             playDiscAnimation();
             scrollToWithOffset(disc, -80);
             hideElement(cover);
+            hideControls();
             video.style.animation = "flicker 500ms infinite alternate-reverse";
             playVideo();
         }, 1000);
@@ -217,6 +265,8 @@ function hideElement(element) {
 
 //Scroll towards an element with a Y offset.
 function scrollToWithOffset(element, yOffset = 0){
-    var scrollY = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo(0, scrollY);
+    window.scrollTo(0, element.getBoundingClientRect().top + window.pageYOffset + yOffset);
 }
+
+//Assign the DOM ready method.
+document.addEventListener("DOMContentLoaded", start, false);

@@ -24,13 +24,6 @@ body {
     font-size: 14 px;
     font-family: sans-serif;
     background-color: #485d6a;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-/* Hide the scrollbar in webkit browsers */
-body::-webkit-scrollbar {
-    display: none;
 }
 
 /* Remove underline from all links*/
@@ -65,13 +58,12 @@ header nav {
     transition: height 200ms;
 }
 
-/* The logo for the site. It'll slowly change color over 10 seconds before reversing the color change back to 0.*/
+/* The logo for the site.*/
 header img {
     display: inline;
     height: 50px;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 15px;
     margin-right: 3%;
     transition: opacity 200ms;
     opacity: 0;
