@@ -182,22 +182,6 @@
     top: 70px;
 }
 
-#defaultdescription {
-    height: 80px;
-}
-
-#firstdescription {
-    height: 150px;
-}
-
-#seconddescription {
-    height: 170px;
-}
-
-#thirddescription {
-    height: 150px;
-}
-
 .rotated {
     transform: rotateX(-90deg) scale(1, 0);
     transform-origin: top;
@@ -394,21 +378,6 @@ ul li {
     ul li {
         font-size: 11px;
     }
-    #defaultdescription {
-        height: 100px;
-    }
-    
-    #firstdescription {
-        height: 170px;
-    }
-    
-    #seconddescription {
-        height: 190px;
-    }
-    
-    #thirddescription {
-        height: 170px;
-    }
 }
 
 /* When the screen width is less than 700px make these adjustments. */
@@ -476,22 +445,6 @@ ul li {
     }
     
     #projectcontainer {
-        margin-bottom: 100px;
-    }
-
-    #defaultdescription {
-        height: 120px;
-    }
-    
-    #firstdescription {
-        height: 285px;
-    }
-    
-    #seconddescription {
-        height: 325px;
-    }
-    
-    #thirddescription {
-        height: 300px;
+        margin-bottom: 200px;
     }
 }

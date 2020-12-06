@@ -168,8 +168,8 @@
             <form id="loginform" class="form">
                 <h1><i class="fas fa-user-circle"></i></h1>
                 <label id="loginerror" class="formerror"l>Username or password incorrect</label>
-                <input id="loginusername" type="text" placeholder="Username" autofocus>
-                <input id="loginpassword" type="password" placeholder="Password">
+                <input id="loginusername" type="text" placeholder="Username" autocomplete="username">
+                <input id="loginpassword" type="password" placeholder="Password" autocomplete="current-password">
                 <button id="loginbutton" class="submitbutton" type="button">Login</button>
                 <button class="closebutton" type="button">X</button>
                 <a id="showregister">Register an account.</a>
@@ -180,7 +180,7 @@
                 <h1><i class="fas fa-id-badge"></i></h1>
                 <label id="registererror" class="formerror"></label>
                 <input id="registerusername" type="text" placeholder="Username" autocomplete="username" required>
-                <input id="registerpassword" type="password" placeholder="Password" autocomplete="current-password" required>
+                <input id="registerpassword" type="password" placeholder="Password" autocomplete="new-password" required>
                 <br/>
                 <label for="terms">Agree to terms and conditions?</label>
                 <input id="agreebox" type="checkbox" name="terms" required>
