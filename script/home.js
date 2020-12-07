@@ -9,8 +9,8 @@ var showing_controls = false;
 //Variable which determines whether the volume is on or off and is used to distinguish whether to turn it on or off.
 var volume_on = true;
 
-//Get the elements on the page.
-const page = document.getElementById("page");
+//Get the elements on the wallpaper.
+const wallpaper = document.getElementById("wallpaper");
 const cover = document.getElementById("video-cover");
 const disc = document.getElementById("disc");
 
@@ -227,7 +227,7 @@ function turnVolumeOff() {
 //Play the disc insertion and playing animations.
 function playDiscAnimation() {
     disc.style.animation = "spin-disc 300ms infinite linear";
-    page.style.backgroundColor = "#333030";
+    wallpaper.style.backgroundColor = "#333030";
     animating_disc = false;
 }
 
@@ -235,7 +235,7 @@ function playDiscAnimation() {
 function ejectDiscAnimation() {
     disc.style.animation = "play-disc 1s reverse";
     disc.style.animationPlayState = "running";
-    page.style.backgroundColor = "#b8c9dd";
+    wallpaper.style.backgroundColor = "#b8c9dd";
     animating_disc = false;
 }
 

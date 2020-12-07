@@ -10,7 +10,11 @@
 }
 
 #board {
-    background-color: green;
-    border: 5px ridge brown;
-    margin: 10px;
+    position: relative;
+    background-color: #c4c479;
+    border: 20px ridge brown;
+    margin: 20px 10px 10px;
+    max-width: 800px;
+    left: 50%;
+    transform: translateX(-50%);
 }
