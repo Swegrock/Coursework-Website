@@ -1,7 +1,3 @@
-/* The background color will determine the true color of the page.
-   We create the background by layering a low opacity zigzag pattern over a background color.
-   This allows us to transition between background colors as even though linear-gradient animations
-   are not allowed, we can change the background color.*/
 #page {
     background-color: #b8c9dd;
     background-image: linear-gradient(#00000063, transparent 25%, transparent 75% #00000063 100%), linear-gradient(to right ,#0000009b, transparent 25%, transparent 75% #0000009b 100%);
@@ -13,8 +9,6 @@
     top: 0;
 }
 
-/* The video container is just an extra layer around the video containing the controls
-   It also gives the "TV" a nice bevel effect.*/
 #video-container {
     position: relative;
     display: block;
@@ -30,7 +24,6 @@
     overflow: hidden;
 }
 
-/* A small line which sits in the video container helping to improve the "TV" appearance. */
 #video-container::after {
     display: inline-block;
     padding: 0 3px;
@@ -46,7 +39,6 @@
     transform: translateX(-50%);
 }
 
-/* The video cover is just a black box which sits over the TV and hides the screen when the disc is not in. */
 #video-cover {
     position: absolute;
     display: block;
@@ -58,13 +50,11 @@
     left: 15px;
 }
 
-/* Set the paragraphs in the video cover to centered with a pinkish colour. */
 #video-cover p {
     text-align: center;
     color: #c7c7c7;
 }
 
-/* Show links in the video cover as a light orangey pinkish colour. */
 #video-cover a {
     color: #f39696;
 }

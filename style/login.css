@@ -105,20 +105,6 @@
     display: none;
 }
 
-.hang-right {
-    position: relative;
-    top: 23px;
-    right: 20px;
-    float: right;
-}
-
-.stick-right {
-    position: absolute;
-    top: 25px;
-    right: 20px;
-    float: right;
-}
-
 @keyframes slide-in {
     from {
         left: -50%;

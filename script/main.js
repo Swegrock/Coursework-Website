@@ -5,11 +5,11 @@ var navbar_shown = false;
 //Get the elements needed.
 const navbar = document.querySelector("nav");
 const logo = document.getElementById("logo");
-const home = document.getElementById("homebutton");
-const cv = document.getElementById("cvbutton");
-const login = document.getElementById("loginmenubutton");
-const logout = document.getElementById("logoutmenubutton");
-const profile_icon = document.getElementById("profileicon");
+const home = document.getElementById("home-button");
+const cv = document.getElementById("cv-button");
+const login = document.getElementById("login-menu-button");
+const logout = document.getElementById("logout-menu-button");
+const edit_icon = document.getElementById("edit-icon");
 const arrow = document.getElementById("arrow");
 
 //Get all header buttons for mobile usage.
@@ -48,22 +48,31 @@ function showNav() {
     navbar_shown = true;
     //Display all the buttons.
     buttons.forEach(link => link.style.display = "");
-    //Set the attributes of the bars children, preparing it to be shown.
-    navbar.style.height = "100%";
-    arrow.style.opacity = 0;
-    logo.style.opacity = 1;
-    home.style.opacity = 1;
-    cv.style.opacity = 1;
-    //Check which login button to display and show the correct ones.
-    if (sessionStorage.getItem("loggedin") != null){
-        logout.style.opacity = 1;
-        profile_icon.style.opacity = 1;
-        logout.style.cursor = "pointer";
-    }
-    else {
-        login.style.opacity = 1;
-        login.style.cursor = "pointer";
-    }
+    //Delay by a millisecond to allow style to process.
+    setTimeout(() => {
+        //Set the attributes of the bars children, preparing it to be shown.
+        navbar.style.height = "100%";
+        arrow.style.opacity = 0;
+        logo.style.opacity = 1;
+        home.style.opacity = 1;
+        cv.style.opacity = 1;
+
+        //Get the logged in user.
+        let user = sessionStorage.getItem("loggedin");
+        //Check which login button to display and show the correct ones.
+        if (user != null){
+            logout.style.opacity = 1;
+            edit_icon.style.opacity = 1;
+            edit_icon.title = "User: " + user;
+            logout.style.cursor = "pointer";
+            login.style.display = "none";
+        }
+        else {
+            login.style.opacity = 1;
+            login.style.cursor = "pointer";
+            logout.style.display = "none";
+        }
+    }, 10);
 }
 
 //Hiding the navbar.
@@ -71,7 +80,7 @@ function hideNav() {
     //If the bars already hidden return and do nothing.
     if (!navbar_shown) return;
     navbar_shown = false
-    //We wait for half a second before hiding the navbar so it doesn"t instantly hide if the user accidentally moves off it
+    //We wait for half a second before hiding the navbar so it doesn't instantly hide if the user accidentally moves off it.
     setTimeout(() => {
         if (navbar_shown) return;
         //Set the attributes of the bars children, preparing it to be hidden.
@@ -80,7 +89,7 @@ function hideNav() {
         cv.style.opacity = 0;
         login.style.opacity = 0;
         logout.style.opacity = 0;
-        profile_icon.style.opacity = 0;
+        edit_icon.style.opacity = 0;
         login.style.cursor = "";
         logout.style.cursor = "";
         navbar.style.height = "50%";

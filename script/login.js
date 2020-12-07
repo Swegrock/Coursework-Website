@@ -74,11 +74,13 @@ function hideLogin() {
 
 //Tries to log the user in.
 function loginUser() {
+    //Get the password stored in the local storage value.
+    let password = localStorage.getItem(login_username.value);
     //Firstly we want to check to see if the login usernames key correlates to the password value in the storage.
-    if (localStorage.getItem(login_username.value) === login_password.value){
+    if (password === login_password.value){
         //If it does, we'll log in for the session.
-        sessionStorage.setItem('loggedin', localStorage.getItem(document.getElementById("loginusername").value));
-        closeForms();
+        sessionStorage.setItem('loggedin', login_username.value);
+        location.reload();
     }
     else {
         //If not we need to notify the user we haven't been successful by showing the error message and shaking the window.
