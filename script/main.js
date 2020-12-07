@@ -87,6 +87,7 @@ function hideNav() {
         arrow.style.opacity = 1;
         //Hide all the buttons.
         setTimeout(() => {
+            if (navbar_shown) return;
             buttons.forEach(link => link.style.display = "none");
         }, 200);
     }, 500);
