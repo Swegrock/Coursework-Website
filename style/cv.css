@@ -37,7 +37,7 @@
     transform: translateY(2px);
 }
 
-#summaryhead {
+#summary-head {
     font-weight: 900;
     font-size: 25px;
     text-decoration: underline;
@@ -51,7 +51,7 @@
     box-shadow: 0 5px 8px 1px #00000020;
 }
 
-#smallprofile {
+#small-profile {
     margin: -20px 0 0 10px;
     width: 150px;
     display: none;
@@ -59,12 +59,12 @@
     box-shadow: 0 5px 8px 1px #00000020;
 }
 
-#letterC {
+#letter-C {
     color: purple;
     text-shadow: 1px 0px 0px #5f035f, 0px 1px 0px #5f035f, 2px 1px 0px #5f035f, 1px 2px 0px #5f035f, 3px 2px 0px #5f035f, 2px 3px 0px #5f035f, 4px 3px 0px #5f035f, 3px 4px 0px #5f035f, 5px 4px 0px #5f035f, 4px 5px 0px #5f035f, 6px 5px 0px #5f035f, 5px 6px 0px #5f035f;
 }
 
-#letterV {
+#letter-V {
     color: orange;
     text-shadow: 1px 0px 0px #bb7b03, 0px 1px 0px #bb7b03, 2px 1px 0px #bb7b03, 1px 2px 0px #bb7b03, 3px 2px 0px #bb7b03, 2px 3px 0px #bb7b03, 4px 3px 0px #bb7b03, 3px 4px 0px #bb7b03, 5px 4px 0px #bb7b03, 4px 5px 0px #bb7b03, 6px 5px 0px #bb7b03, 5px 6px 0px #bb7b03;
 }
@@ -78,7 +78,7 @@
     padding-bottom: 5px;
 }
 
-#projectcontainer, #yearcontainer {
+#project-container, #year-container {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -87,7 +87,7 @@
     text-align: center;
 }
 
-#projectcontainer {
+#project-container {
     margin: 15px 0 30px 0;
     position: relative;
     width: 80%;
@@ -95,11 +95,11 @@
     height: 300px;
 }
 
-#projectcontainer span {
+#project-container span {
     text-decoration: underline;
 }
 
-#yearcontainer {
+#year-container {
     display: inline-block;
     height: 400px;
 }
@@ -114,7 +114,7 @@
     vertical-align: top;
 }
 
-.yearheading {
+.year-heading {
     width: 62%;
     left: 18%;
     top: -15px;
@@ -188,7 +188,7 @@
     animation-iteration-count: 1;
 }
 
-.year:hover .yearheading {
+.year:hover .year-heading {
     animation: shiny 1s;
     animation-play-state: running;
 }
@@ -212,7 +212,7 @@ ul li {
     line-height: 16px;
 }
 
-#cardscontainer {
+#cards-container {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -221,17 +221,17 @@ ul li {
     margin-top: 30px;
 }
 
-.cardstack {
+.card-stack {
     width: 48%;
     height: 180px;
     perspective: 100px;
 }
 
-.cardstack.languages {
+.card-stack.languages {
     float: left;
 }
 
-.cardstack.achievements {
+.card-stack.achievements {
     float: right;
 }
 
@@ -353,7 +353,7 @@ ul li {
     }
 }
 
-@keyframes hidepane {
+@keyframes hide-pane {
     0% {
         transform: rotateX(0);
     }
@@ -365,7 +365,7 @@ ul li {
     }
 }
 
-@keyframes showpane {
+@keyframes show-pane {
     0% {
         transform: rotateX(82deg);
     }
@@ -389,12 +389,12 @@ ul li {
         width: 100%;
     }
 
-    .cardstack {
+    .card-stack {
         width: 48%;
         height: 230px;
     }
 
-    #yearcontainer {
+    #year-container {
         height: 100%;
         width: 100%;
     }
@@ -414,7 +414,7 @@ ul li {
         margin: 0 1%;
     }
     
-    #projectcontainer {
+    #project-container {
         width: 100%;
     }
 
@@ -436,15 +436,15 @@ ul li {
         display: none;
     }
     
-    #smallprofile {
+    #small-profile {
         display: inline-block;
     }
     
-    #cardscontainer {
+    #cards-container {
         width: 100%;
     }
     
-    #projectcontainer {
+    #project-container {
         margin-bottom: 200px;
     }
 }

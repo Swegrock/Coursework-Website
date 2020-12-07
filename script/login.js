@@ -21,7 +21,7 @@ const register_error = document.getElementById("registererror");
 
 const dimmer = document.querySelector(".dimmer");
 
-const close_buttons = document.querySelectorAll(".closebutton");
+const close_buttons = document.querySelectorAll(".close-button");
 const show_login_buttons = document.querySelectorAll(".showlogin");
 const logout_user_buttons = document.querySelectorAll(".logoutuser");
 
@@ -57,7 +57,7 @@ function showLogin() {
     login_form.reset();
     login_window.style.display = "";
     login_showing = true;
-    login_window.style.animation = "slidein 1s forwards";
+    login_window.style.animation = "slide-in 1s forwards";
 }
 
 //Hide the login window.
@@ -65,7 +65,7 @@ function hideLogin() {
     if (!login_showing) return;
     login_showing = false;
     login_error.style.display = "";
-    login_window.style.animation = "slideout 1s forwards";
+    login_window.style.animation = "slide-out 1s forwards";
     setTimeout(() => {
         if (login_showing) return;
         login_window.style.display = "none";
@@ -105,7 +105,7 @@ function showRegister() {
     register_form.reset();
     register_window.style.display = "";
     register_showing = true;
-    register_window.style.animation = "slidein 1s forwards";
+    register_window.style.animation = "slide-in 1s forwards";
 }
 
 //Hide the register window.
@@ -113,7 +113,7 @@ function hideRegister() {
     if (!register_showing) return;
     register_showing = false;
     register_error.style.display = "";
-    register_window.style.animation = "slideout 1s forwards";
+    register_window.style.animation = "slide-out 1s forwards";
     setTimeout(() => {
         if (register_showing) return;
         register_window.style.display = "none";

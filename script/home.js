@@ -11,7 +11,7 @@ var volume_on = true;
 
 //Get the elements on the page.
 const page = document.getElementById("page");
-const cover = document.getElementById("videocover");
+const cover = document.getElementById("video-cover");
 const disc = document.getElementById("disc");
 
 const play_button = document.getElementById("play");
@@ -21,16 +21,16 @@ const skip_button = document.getElementById("skip");
 const end_button = document.getElementById("end");
 
 const play_icon = document.getElementById("playicon");
-const pause_icon = document.getElementById("pauseicon");
+const pause_icon = document.getElementById("pause-icon");
 
 const volume_on_icon = document.getElementById("volumeon");
-const volume_off_icon = document.getElementById("volumeoff");
+const volume_off_icon = document.getElementById("volume-off");
 
 const video = document.querySelector("video");
 
-const video_container = document.getElementById("videocontainer");
+const video_container = document.getElementById("video-container");
 const volume_button = document.getElementById("volume");
-const video_slider = document.getElementById("videoslider");
+const video_slider = document.getElementById("video-slider");
 
 //The starting method.
 function start() {
@@ -136,7 +136,7 @@ function insertDisc() {
         if (animating_disc) return;
         animating_disc = true;
         activate_disc = true;
-        disc.style.animation = "playdisc 1s linear";
+        disc.style.animation = "play-disc 1s linear";
         //Wait for the disc to be fully inserted and play the video.
         setTimeout(() => {
             playDiscAnimation();
@@ -226,14 +226,14 @@ function turnVolumeOff() {
 
 //Play the disc insertion and playing animations.
 function playDiscAnimation() {
-    disc.style.animation = "spindisc 300ms infinite linear";
+    disc.style.animation = "spin-disc 300ms infinite linear";
     page.style.backgroundColor = "#333030";
     animating_disc = false;
 }
 
 //Play the disc ejection animation.
 function ejectDiscAnimation() {
-    disc.style.animation = "playdisc 1s reverse";
+    disc.style.animation = "play-disc 1s reverse";
     disc.style.animationPlayState = "running";
     page.style.backgroundColor = "#b8c9dd";
     animating_disc = false;

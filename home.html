@@ -20,26 +20,26 @@
                     <a href="home.html" title="Logo"><img id="logo" src="img/logo.png"/></a>
                     <a href="home.html" title="Home"><i id="homebutton" class="fas fa-home"></i></a>
                     <a href="cv.html" title="CV"><i id="cvbutton" class="fas fa-clipboard"></i></a>
-                    <div class="stickright"><i id="profileicon" class="fas fa-user-circle"></i></div>
-                    <a title="Login" class="showlogin hangright"><i id="loginmenubutton" class="fas fa-sign-in-alt"></i></a>
-                    <a title="Logout" class="logoutuser hangright"><i id="logoutmenubutton" class="fas fa-sign-out-alt"></i></a>
+                    <div class="stick-right"><i id="profileicon" class="fas fa-user-circle"></i></div>
+                    <a title="Login" class="showlogin hang-right"><i id="loginmenubutton" class="fas fa-sign-in-alt"></i></a>
+                    <a title="Logout" class="logoutuser hang-right"><i id="logoutmenubutton" class="fas fa-sign-out-alt"></i></a>
                 </nav>
                 <div id="arrow"/>
             </header>
-            <div class="bigbreak"></div>
+            <div class="big-break"></div>
             <img id="disc" title="Play DVD" src="img/dvd.png"/>
-            <div id="videocontainer">
+            <div id="video-container">
                 <video width="400" id="bunny">
                     <source src="video/Big_Buck_Bunny_extract.mp4" type="video/mp4">
                     <source src="vidoe/Big_Buck_Bunny_extract.ogv" type="video/ogg">
                     Your browser does not support HTML5 video.
                 </video>
-                <input id="videoslider" value="0" min="0" max="300" type="range"/>
+                <input id="video-slider" value="0" min="0" max="300" type="range"/>
                 <div id="volume">
                     <i id="volumeon" class="fas fa-volume-up"></i>
-                    <i id="volumeoff" class="fas fa-volume-mute"></i>
+                    <i id="volume-off" class="fas fa-volume-mute"></i>
                 </div>
-                <div id="videocover">
+                <div id="video-cover">
                     <p>
                         Video courtesy of
                         <a href="https://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.
@@ -54,7 +54,7 @@
                     </button>
                     <button id="play">
                         <i title="Play" id="playicon" class="fas fa-play"></i>
-                        <i title="Pause" id="pauseicon" class="fas fa-pause"></i>
+                        <i title="Pause" id="pause-icon" class="fas fa-pause"></i>
                     </button>
                     <button title="Forward" id="skip">
                         <i class="fas fa-forward"></i>
@@ -80,25 +80,25 @@
             <div class="popup" id="login">
                 <form id="loginform" class="form">
                     <h1><i class="fas fa-user-circle"></i></h1>
-                    <label id="loginerror" class="formerror"l>Username or password incorrect</label>
+                    <label id="loginerror" class="form-error"l>Username or password incorrect</label>
                     <input id="loginusername" type="text" placeholder="Username" autocomplete="username">
                     <input id="loginpassword" type="password" placeholder="Password" autocomplete="current-password">
-                    <button id="loginbutton" class="submitbutton" type="button">Login</button>
-                    <button class="closebutton" type="button">X</button>
+                    <button id="loginbutton" class="submit-button" type="button">Login</button>
+                    <button class="close-button" type="button">X</button>
                     <a id="showregister">Register an account.</a>
                 </form>
             </div>
             <div class="popup" id="register">
                 <form id="registerform" class="form">
                     <h1><i class="fas fa-id-badge"></i></h1>
-                    <label id="registererror" class="formerror"></label>
+                    <label id="registererror" class="form-error"></label>
                     <input id="registerusername" type="text" placeholder="Username" autocomplete="off" required>
                     <input id="registerpassword" type="password" placeholder="Password" autocomplete="new-password" required>
                     <br/>
                     <label for="terms">Agree to terms and conditions?</label>
                     <input id="agreebox" type="checkbox" name="terms" required>
-                    <button id="registerbutton" class="submitbutton" type="button">Register</button>
-                    <button class="closebutton" type="button">X</button>
+                    <button id="registerbutton" class="submit-button" type="button">Register</button>
+                    <button class="close-button" type="button">X</button>
                     <a class="showlogin">Login to an account.</a>
                 </form>
             </div>

@@ -62,7 +62,7 @@
     height: 23px;
 }
 
-.closebutton {
+.close-button {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -76,7 +76,7 @@
     transition: background-color 200ms;
 }
 
-.submitbutton {
+.submit-button {
     width: 80%;
     padding: 5px;
     color: #00c2cb;
@@ -100,26 +100,26 @@
     font-size: 12px;
 }
 
-.formerror {
+.form-error {
     color: #e13535;
     display: none;
 }
 
-.hangright {
+.hang-right {
     position: relative;
     top: 23px;
     right: 20px;
     float: right;
 }
 
-.stickright {
+.stick-right {
     position: absolute;
     top: 25px;
     right: 20px;
     float: right;
 }
 
-@keyframes slidein {
+@keyframes slide-in {
     from {
         left: -50%;
     }
@@ -128,7 +128,7 @@
     }
 }
 
-@keyframes slideout {
+@keyframes slide-out {
     from {
         left: 50%;
     }
