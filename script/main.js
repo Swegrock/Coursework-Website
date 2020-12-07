@@ -1,16 +1,16 @@
 //We need a variable to determine whether it is shown or not to prevent it being shown twice on mobiles.
 //And also some children have delayed animations which would need to be cancelled.
-var navbarShown = false;
+var navbar_shown = false;
 
 //Get the elements needed.
 const navbar = document.querySelector("nav");
-const logo = document.querySelector("#logo");
-const home = document.querySelector("#homebutton");
-const cv = document.querySelector("#cvbutton");
-const login = document.querySelector("#loginmenubutton");
-const logout = document.querySelector("#logoutmenubutton");
-const profileIcon = document.querySelector("#profileicon");
-const arrow = document.querySelector("#arrow");
+const logo = document.getElementById("logo");
+const home = document.getElementById("homebutton");
+const cv = document.getElementById("cvbutton");
+const login = document.getElementById("loginmenubutton");
+const logout = document.getElementById("logoutmenubutton");
+const profile_icon = document.getElementById("profileicon");
+const arrow = document.getElementById("arrow");
 
 //Get all header buttons for mobile usage.
 const buttons = document.querySelectorAll("header a");
@@ -44,8 +44,8 @@ function mobileNavHandler(eventArgs) {
 //Showing the navbar.
 function showNav() {
     //If the bars already showing return and do nothing.
-    if (navbarShown) return;
-    navbarShown = true;
+    if (navbar_shown) return;
+    navbar_shown = true;
     //Display all the buttons.
     buttons.forEach(link => link.style.display = "");
     //Set the attributes of the bars children, preparing it to be shown.
@@ -57,7 +57,7 @@ function showNav() {
     //Check which login button to display and show the correct ones.
     if (sessionStorage.getItem("loggedin") != null){
         logout.style.opacity = 1;
-        profileIcon.style.opacity = 1;
+        profile_icon.style.opacity = 1;
         logout.style.cursor = "pointer";
     }
     else {
@@ -69,18 +69,18 @@ function showNav() {
 //Hiding the navbar.
 function hideNav() {
     //If the bars already hidden return and do nothing.
-    if (!navbarShown) return;
-    navbarShown = false
+    if (!navbar_shown) return;
+    navbar_shown = false
     //We wait for half a second before hiding the navbar so it doesn"t instantly hide if the user accidentally moves off it
     setTimeout(() => {
-        if (navbarShown) return;
+        if (navbar_shown) return;
         //Set the attributes of the bars children, preparing it to be hidden.
         logo.style.opacity = 0;
         home.style.opacity = 0;
         cv.style.opacity = 0;
         login.style.opacity = 0;
         logout.style.opacity = 0;
-        profileIcon.style.opacity = 0;
+        profile_icon.style.opacity = 0;
         login.style.cursor = "";
         logout.style.cursor = "";
         navbar.style.height = "50%";

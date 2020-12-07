@@ -1,36 +1,36 @@
 //Disc variables.
-var activateDisc = false;
-var playingDisc = false;
-var animatingDisc = false;
+var activate_disc = false;
+var playing_disc = false;
+var animating_disc = false;
 
 //Variable which determines whether the hover video controls can be seen.
-var showingControls = false;
+var showing_controls = false;
 
 //Variable which determines whether the volume is on or off and is used to distinguish whether to turn it on or off.
-var volumeOn = true;
+var volume_on = true;
 
 //Get the elements on the page.
-const page = document.querySelector("#page");
-const cover = document.querySelector("#videocover");
-const disc = document.querySelector("#disc");
+const page = document.getElementById("page");
+const cover = document.getElementById("videocover");
+const disc = document.getElementById("disc");
 
-const playButton = document.querySelector("#play");
-const restartButton = document.querySelector("#restart");
-const rewindButton = document.querySelector("#rewind");
-const skipButton = document.querySelector("#skip");
-const endButton = document.querySelector("#end");
+const play_button = document.getElementById("play");
+const restart_button = document.getElementById("restart");
+const rewind_button = document.getElementById("rewind");
+const skip_button = document.getElementById("skip");
+const end_button = document.getElementById("end");
 
-const playIcon = document.querySelector("#playicon");
-const pauseIcon = document.querySelector("#pauseicon");
+const play_icon = document.getElementById("playicon");
+const pause_icon = document.getElementById("pauseicon");
 
-const volumeOnIcon = document.querySelector("#volumeon");
-const volumeOffIcon = document.querySelector("#volumeoff");
+const volume_on_icon = document.getElementById("volumeon");
+const volume_off_icon = document.getElementById("volumeoff");
 
 const video = document.querySelector("video");
 
-const videoContainer = document.querySelector("#videocontainer");
-const volumeButton = document.querySelector("#volume");
-const videoSlider = document.querySelector("#videoslider");
+const video_container = document.getElementById("videocontainer");
+const volume_button = document.getElementById("volume");
+const video_slider = document.getElementById("videoslider");
 
 //The starting method.
 function start() {
@@ -39,34 +39,34 @@ function start() {
     video.addEventListener("ended", ejectDisc);
 
     //When the slider value is changed we want to set the video time to the slider value.
-    videoSlider.addEventListener("input", setVideoTime, false);
+    video_slider.addEventListener("input", setVideoTime, false);
     //Every time the current playing position of the video updates we'll set the slider accordingly.
     video.addEventListener("timeupdate", setSliderPosition, false);
     //The volume button checks if the volume is on and calls the correct method.
-    volumeButton.addEventListener("click", setVolume);
+    volume_button.addEventListener("click", setVolume);
     //The play button will either start the video or continue playing it.
-    playButton.addEventListener("click", playClicked);
+    play_button.addEventListener("click", playClicked);
 
     //These buttons do what they say on the tin.
-    restartButton.addEventListener("click", resetVideo);
-    rewindButton.addEventListener("click", rewindVideo)
-    skipButton.addEventListener("click", skipVideo)
-    endButton.addEventListener("click", ejectDisc);
+    restart_button.addEventListener("click", resetVideo);
+    rewind_button.addEventListener("click", rewindVideo)
+    skip_button.addEventListener("click", skipVideo)
+    end_button.addEventListener("click", ejectDisc);
 
     //We want to distinguish whether we should use pc or mobile interaction.
     //Pc interaction occurs on hover where as mobile interaction occurs on press.
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        videoContainer.addEventListener('click', mobileControlsHandler);
+        video_container.addEventListener('click', mobileControlsHandler);
     }
     else {
-        videoContainer.addEventListener("mouseover", showControls);
-        videoContainer.addEventListener("mouseleave", hideControls);
+        video_container.addEventListener("mouseover", showControls);
+        video_container.addEventListener("mouseleave", hideControls);
     }
 }
 
 //For mobiles, as we don't have the ability to hover over, we'll accept clicking on the video to show and hide the controls.
 function mobileControlsHandler() {
-    if (!showingControls){
+    if (!showing_controls){
         showControls();
     }
     else {
@@ -76,33 +76,33 @@ function mobileControlsHandler() {
 
 //Showing the hover controls.
 function showControls() {
-    videoSlider.style.opacity = 1;
-    volumeButton.style.opacity = 1;
-    showingControls = true;
+    video_slider.style.opacity = 1;
+    volume_button.style.opacity = 1;
+    showing_controls = true;
 }
 
 //Hiding the hover controls.
 function hideControls() {
-    videoSlider.style.opacity = 0;
-    volumeButton.style.opacity = 0;
-    showingControls = false;
+    video_slider.style.opacity = 0;
+    volume_button.style.opacity = 0;
+    showing_controls = false;
 }
 
 //Setting the video time.
 function setVideoTime() {
     //The current time in the video is set as the slider value over the max slider value multiplied by the total length of the video.
-    video.currentTime = videoSlider.value / videoSlider.max * video.duration;
+    video.currentTime = video_slider.value / video_slider.max * video.duration;
 }
 
 //Setting the slider position.
 function setSliderPosition() {
     //The slide is set as the current time in the video over the total length of the video multiplied by the max slider value.
-    videoSlider.value = video.currentTime / video.duration * videoSlider.max;
+    video_slider.value = video.currentTime / video.duration * video_slider.max;
 }
 
 //Setting the video volume.
 function setVolume() {
-    if (volumeOn){
+    if (volume_on){
         turnVolumeOff();
     }
     else {
@@ -113,13 +113,13 @@ function setVolume() {
 //Clicking the play button.
 function playClicked() {
     //For play if the disc isn't in, we want to insert it.
-    if (!activateDisc) {
+    if (!activate_disc) {
         window.scrollTo(0, 0);
         insertDisc();
     }
     else {
         //Then we want to check either pause or play the video.
-        if (!playingDisc){
+        if (!playing_disc){
             playVideo();
         }
         else {
@@ -131,11 +131,11 @@ function playClicked() {
 //Inserting the disc.
 function insertDisc() {
     //If the disc is already in eject it.
-    if (!activateDisc){
+    if (!activate_disc){
         //If the disc is already animating we return and do nothing.
-        if (animatingDisc) return;
-        animatingDisc = true;
-        activateDisc = true;
+        if (animating_disc) return;
+        animating_disc = true;
+        activate_disc = true;
         disc.style.animation = "playdisc 1s linear";
         //Wait for the disc to be fully inserted and play the video.
         setTimeout(() => {
@@ -155,9 +155,9 @@ function insertDisc() {
 //Ejecting the disc.
 function ejectDisc() {
     //If the disc is in we can eject it.
-    if (activateDisc){
-        if (animatingDisc) return;
-        animatingDisc = true;
+    if (activate_disc){
+        if (animating_disc) return;
+        animating_disc = true;
         //Reset the video back to its original state and eject it.
         pauseVideo();
         resetVideo();
@@ -169,66 +169,66 @@ function ejectDisc() {
         //Replay the disc bouncing animation.
         setTimeout(() => {
             disc.style.animation = "bounce 300ms infinite alternate-reverse";
-            activateDisc = false;
+            activate_disc = false;
         }, 1000);
     }
 }
 
 //Play the video.
 function playVideo() {
-    if (!activateDisc) return;
+    if (!activate_disc) return;
     playTvAnimations();
-    playingDisc = true;
+    playing_disc = true;
     video.play();
 }
 
 //Pause the video.
 function pauseVideo() {
-    if (!activateDisc) return;
+    if (!activate_disc) return;
     pauseTvAnimations();
-    playingDisc = false;
+    playing_disc = false;
     video.pause();
 }
 
 //Reset the video back to zero.
 function resetVideo() {
-    if (!activateDisc) return;
+    if (!activate_disc) return;
     video.currentTime = 0;
 }
 
 //Rewind the video 5 milliseconds.
 function rewindVideo() {
-    if (!activateDisc) return;
+    if (!activate_disc) return;
     video.currentTime -= 5;
 }
 
 //Skip 5 milliseconds in the video.
 function skipVideo() {
-    if (!activateDisc) return;
+    if (!activate_disc) return;
     video.currentTime += 5;
 }
 
 //Turn the volume on.
 function turnVolumeOn() {
     video.volume = 1;
-    hideElement(volumeOffIcon);
-    showElement(volumeOnIcon);
-    volumeOn = true;
+    hideElement(volume_off_icon);
+    showElement(volume_on_icon);
+    volume_on = true;
 }
 
 //Turn the volume off.
 function turnVolumeOff() {
     video.volume = 0;
-    hideElement(volumeOnIcon);
-    showElement(volumeOffIcon);
-    volumeOn = false;
+    hideElement(volume_on_icon);
+    showElement(volume_off_icon);
+    volume_on = false;
 }
 
 //Play the disc insertion and playing animations.
 function playDiscAnimation() {
     disc.style.animation = "spindisc 300ms infinite linear";
     page.style.backgroundColor = "#333030";
-    animatingDisc = false;
+    animating_disc = false;
 }
 
 //Play the disc ejection animation.
@@ -236,21 +236,21 @@ function ejectDiscAnimation() {
     disc.style.animation = "playdisc 1s reverse";
     disc.style.animationPlayState = "running";
     page.style.backgroundColor = "#b8c9dd";
-    animatingDisc = false;
+    animating_disc = false;
 }
 
 //Play the tv animation.
 function playTvAnimations() {
     disc.style.animationPlayState = "running";
-    hideElement(playIcon);
-    showElement(pauseIcon);
+    hideElement(play_icon);
+    showElement(pause_icon);
 }
 
 //Pause the tv animations.
 function pauseTvAnimations() {
     disc.style.animationPlayState = "paused";
-    hideElement(pauseIcon);
-    showElement(playIcon);
+    hideElement(pause_icon);
+    showElement(play_icon);
 }
 
 //Show an element by setting its display to block.

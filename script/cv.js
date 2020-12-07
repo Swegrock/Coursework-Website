@@ -1,30 +1,30 @@
 //Variable determining whether tha panels or animating or not.
-var animatingPanels = false;
+var animating_panels = false;
 //The last panel shown to the user.
-var lastPaneShown;
+var last_panel_shown;
 
 //Set the duration for swapping and delay between swapping.
-const swapDelay = 9000;
-const swapLength = 1000;
+const swap_delay = 8000;
+const swap_length = 1000;
 //Get all of the cardstacks present on the page.
-const cardStacks = document.querySelectorAll(".cardstack");
+const card_stacks = document.querySelectorAll(".cardstack");
 
 //The starting method.
 function start() {
     //Reverse the cardstack so the first card will be shown, as usually elements stack incrementally according to their line position.
-    cardStacks.forEach(cardStack => [...cardStack.children].reverse().forEach(card => cardStack.append(card)));
-    //Swap the cards every 'swapDelay'.
-    window.setInterval(swapCards, swapDelay);
+    card_stacks.forEach(cardStack => [...cardStack.children].reverse().forEach(card => cardStack.append(card)));
+    //Swap the cards every 'swap_delay'.
+    window.setInterval(swapCards, swap_delay);
 }
 
 //For each cardstack we want to swap a card, we'll delay this so each stack doesn't change at the same time.
 function swapCards(){
     let index = 0;
-    cardStacks.forEach(cardStack => {
+    card_stacks.forEach(cardStack => {
         setTimeout(() => {
             swapCard(cardStack);
         }, index);
-        index += swapLength/2.0;
+        index += swap_length/2.0;
     });
 }
 
@@ -33,38 +33,38 @@ function swapCard(cardStack) {
     //Get the last child.
     let endCard = cardStack.querySelector(".card:last-child");
     //Set the animation for that child to swap.
-    endCard.style.animation = "swap "+ swapLength +"ms forwards";
+    endCard.style.animation = "swap "+ swap_length +"ms forwards";
     setTimeout(() => {
         //After the swap is complete stop the animation and prepend the card to the top of the stack.
         endCard.style.animation = "";
         cardStack.prepend(endCard);
-    }, swapLength);
+    }, swap_length);
 }
 
 //When a project is clicked we want to show the project associated with the button.
 function showProjectDescription(project) {
     //If a panel is currently animating we want to return and do nothing.
-    if (animatingPanels) return;
-    animatingPanels = true;
+    if (animating_panels) return;
+    animating_panels = true;
     let time = 0;
     //Get the id of the project according to the parameter passed in and then get its element.
-    let id = "#" + project.id + "description";
-    let newPaneShown = document.querySelector(id);
+    let id = project.id + "description";
+    let newPaneShown = document.getElementById(id);
     //If a panel is currently shown or the panel is the same, we need to hide the currently shown panel.
-    if (lastPaneShown != null || lastPaneShown == newPaneShown){
-        lastPaneShown.style.animation = "hidepane 1s forwards";
+    if (last_panel_shown != null || last_panel_shown == newPaneShown){
+        last_panel_shown.style.animation = "hidepane 1s forwards";
         time = 1000;
-        if (lastPaneShown == newPaneShown) {
-            lastPaneShown = null;
-            animatingPanels = false;
+        if (last_panel_shown == newPaneShown) {
+            last_panel_shown = null;
+            animating_panels = false;
             return;
         }
     }
     //Now we want to show the new panel.
     setTimeout(() => {
-        lastPaneShown = newPaneShown;
-        lastPaneShown.style.animation = "showpane 1s forwards";
-        animatingPanels = false;
+        last_panel_shown = newPaneShown;
+        last_panel_shown.style.animation = "showpane 1s forwards";
+        animating_panels = false;
     }, time);
 }
 

@@ -1,89 +1,89 @@
 //Variable for knowing if the login window is showing.
-var loginShowing = false;
+var login_showing = false;
 //Variable for knowing if the register window is showing.
-var registerShowing = false;
+var register_showing = false;
 
 //Get the elements needed.
-const loginWindow = document.querySelector("#login");
-const loginForm = document.querySelector("#loginform");
-const loginUsername = document.querySelector("#loginusername");
-const loginPassword = document.querySelector("#loginpassword");
-const loginButton = document.querySelector("#loginbutton");
-const loginError = document.querySelector("#loginerror");
-const showRegisterButton = document.querySelector("#showregister");
+const login_window = document.getElementById("login");
+const login_form = document.getElementById("loginform");
+const login_username = document.getElementById("loginusername");
+const login_password = document.getElementById("loginpassword");
+const login_button = document.getElementById("loginbutton");
+const login_error = document.getElementById("loginerror");
+const show_register_button = document.getElementById("showregister");
 
-const registerWindow = document.querySelector("#register");
-const registerForm = document.querySelector("#registerform");
-const registerUsername = document.querySelector("#registerusername");
-const registerPassword = document.querySelector("#registerpassword");
-const registerButton = document.querySelector("#registerbutton");
-const registerError = document.querySelector("#registererror");
+const register_window = document.getElementById("register");
+const register_form = document.getElementById("registerform");
+const register_username = document.getElementById("registerusername");
+const register_password = document.getElementById("registerpassword");
+const register_button = document.getElementById("registerbutton");
+const register_error = document.getElementById("registererror");
 
 const dimmer = document.querySelector(".dimmer");
 
-const closeButtons = document.querySelectorAll(".closebutton");
-const showLoginButtons = document.querySelectorAll(".showlogin");
-const logoutUserButtons = document.querySelectorAll(".logoutuser");
+const close_buttons = document.querySelectorAll(".closebutton");
+const show_login_buttons = document.querySelectorAll(".showlogin");
+const logout_user_buttons = document.querySelectorAll(".logoutuser");
 
 //The starting method.
 function start() {
     //Assign show register button.
-    showRegisterButton.addEventListener("click", showRegister);
-    registerButton.addEventListener("click", registerUser);
-    loginButton.addEventListener("click", loginUser);
+    show_register_button.addEventListener("click", showRegister);
+    register_button.addEventListener("click", registerUser);
+    login_button.addEventListener("click", loginUser);
 
     //Clicking the dimmer will cause all the open forms to close.
     //This is common practice for websites and has been observed all over.
     dimmer.addEventListener("click", closeForms);
 
     //Add the correct methods to all the children of it.
-    closeButtons.forEach(child => child.addEventListener("click", closeForms));
-    showLoginButtons.forEach(child => child.addEventListener("click", showLogin));
-    logoutUserButtons.forEach(child => child.addEventListener("click", logoutUser));    
+    close_buttons.forEach(child => child.addEventListener("click", closeForms));
+    show_login_buttons.forEach(child => child.addEventListener("click", showLogin));
+    logout_user_buttons.forEach(child => child.addEventListener("click", logoutUser));    
 
     //Hide the login and register windows so they can't be tabbed to by accident.
-    loginWindow.style.display = "none";
-    registerWindow.style.display = "none";
+    login_window.style.display = "none";
+    register_window.style.display = "none";
 }
 
 //Show the login window if we aren't logged in already.
 function showLogin() {
-    if (loginShowing || sessionStorage.getItem("loggedin") != null) return;
-    else if (registerShowing) {
+    if (login_showing || sessionStorage.getItem("loggedin") != null) return;
+    else if (register_showing) {
         hideRegister();
     }
     showDimmer();
     //Reset the form so no previous entries are present.
-    loginForm.reset();
-    loginWindow.style.display = "";
-    loginShowing = true;
-    loginWindow.style.animation = "slidein 1s forwards";
+    login_form.reset();
+    login_window.style.display = "";
+    login_showing = true;
+    login_window.style.animation = "slidein 1s forwards";
 }
 
 //Hide the login window.
 function hideLogin() {
-    if (!loginShowing) return;
-    loginShowing = false;
-    loginError.style.display = "";
-    loginWindow.style.animation = "slideout 1s forwards";
+    if (!login_showing) return;
+    login_showing = false;
+    login_error.style.display = "";
+    login_window.style.animation = "slideout 1s forwards";
     setTimeout(() => {
-        if (loginShowing) return;
-        loginWindow.style.display = "none";
+        if (login_showing) return;
+        login_window.style.display = "none";
     }, 1000);
 }
 
 //Tries to log the user in.
 function loginUser() {
     //Firstly we want to check to see if the login usernames key correlates to the password value in the storage.
-    if (localStorage.getItem(loginUsername.value) === loginPassword.value){
+    if (localStorage.getItem(login_username.value) === login_password.value){
         //If it does, we'll log in for the session.
-        sessionStorage.setItem('loggedin', localStorage.getItem(document.querySelector("#loginusername").value));
+        sessionStorage.setItem('loggedin', localStorage.getItem(document.getElementById("loginusername").value));
         closeForms();
     }
     else {
         //If not we need to notify the user we haven't been successful by showing the error message and shaking the window.
-        shakeWindow(loginWindow);
-        loginError.style.display = "block";
+        shakeWindow(login_window);
+        login_error.style.display = "block";
     }
 }
 
@@ -96,58 +96,58 @@ function logoutUser() {
 
 //Show the register window.
 function showRegister() {
-    if (registerShowing) return;
-    else if (loginShowing) {
+    if (register_showing) return;
+    else if (login_showing) {
         hideLogin();
     }
     showDimmer();
     //Reset the form so no previous entries are present.
-    registerForm.reset();
-    registerWindow.style.display = "";
-    registerShowing = true;
-    registerWindow.style.animation = "slidein 1s forwards";
+    register_form.reset();
+    register_window.style.display = "";
+    register_showing = true;
+    register_window.style.animation = "slidein 1s forwards";
 }
 
 //Hide the register window.
 function hideRegister() {
-    if (!registerShowing) return;
-    registerShowing = false;
-    registerError.style.display = "";
-    registerWindow.style.animation = "slideout 1s forwards";
+    if (!register_showing) return;
+    register_showing = false;
+    register_error.style.display = "";
+    register_window.style.animation = "slideout 1s forwards";
     setTimeout(() => {
-        if (registerShowing) return;
-        registerWindow.style.display = "none";
+        if (register_showing) return;
+        register_window.style.display = "none";
     }, 1000);
 }
 
 //Tries to register the user.
 function registerUser() {
     //We want to make sure the inputs aren't empty and the user has checked the licence agreement.
-    if (!registerForm.checkValidity()){
+    if (!register_form.checkValidity()){
         //Shake the window to visually show something is wrong.
-        shakeWindow(registerWindow);
+        shakeWindow(register_window);
         //Tell them they've not filled in all the details using the default validation message.
-        registerError.innerHTML = "Please fill in all the fields."
+        register_error.innerHTML = "Please fill in all the fields."
         //Tell the user which field they're missing.
-        registerForm.reportValidity();
+        register_form.reportValidity();
         //Show the error message.
-        registerError.style.display = "block";
+        register_error.style.display = "block";
         //Return so the registration doesn't complete.
         return;
     }
     //We also want to make sure the username isn't already in use.
-    if (localStorage.getItem(registerUsername.value) != null) {
+    if (localStorage.getItem(register_username.value) != null) {
         //Shake the window to visually show something is wrong.
-        shakeWindow(registerWindow);
+        shakeWindow(register_window);
         //Tell them the username is in use.
-        registerError.innerHTML = "Username is already in use.";
+        register_error.innerHTML = "Username is already in use.";
         //Show the error message.
-        registerError.style.display = "block";
+        register_error.style.display = "block";
         //Return so the registration doesn't complete.
         return;
     }
     //Then we can create a new user.
-    localStorage.setItem(registerUsername.value, registerPassword.value);
+    localStorage.setItem(register_username.value, register_password.value);
     //If all has worked we can now show the login form.
     showLogin();
 }
