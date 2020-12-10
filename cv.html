@@ -21,11 +21,12 @@
                     <a href="index.html" title="Logo"><img id="logo" src="img/logo.png"/></a>
                     <a href="index.html" title="Home"><i id="home-button" class="fas fa-home"></i></a>
                     <a href="cv.html" title="CV"><i id="cv-button" class="fas fa-clipboard"></i></a>
-                    <a href="list.php" title="Edit"><i id="edit-icon" class="fas fa-edit"></i></a>
-                    <a title="Login" class="showlogin hang-right"><i id="login-menu-button" class="fas fa-sign-in-alt"></i></a>
-                    <a title="Logout" class="logoutuser hang-right"><i id="logout-menu-button" class="fas fa-sign-out-alt"></i></a>
+                    <a title="Login" class="show-login hang-right"><i id="login-menu-button" class="fas fa-sign-in-alt"></i></a>
+                    <a title="Logout" class="logout-user hang-right"><i id="logout-menu-button" class="fas fa-sign-out-alt"></i></a>
+                    <a href="new.php" class="hang-right" id="new-button" title="Add New Event"><i id="add-icon" class="fas fa-calendar-plus"></i></i></a>
+                    <a href="events.html" title="View Events"><i id="view-icon" class="fas fa-calendar-alt"></i></a>
                 </nav>
-                <div id="arrow"/>
+                <div id="arrow"></div>
             </header>
             <div class="big-break"></div>
             <div id="container">
@@ -156,28 +157,28 @@
         </footer>
         <div class="dimmer"></div>
         <div class="popup" id="login">
-            <form id="loginform" class="form">
+            <form id="login-form" class="form">
                 <h1><i class="fas fa-user-circle"></i></h1>
-                <label id="loginerror" class="form-error"l>Username or password incorrect</label>
-                <input id="loginusername" type="text" placeholder="Username" autocomplete="username">
-                <input id="loginpassword" type="password" placeholder="Password" autocomplete="current-password">
-                <button id="loginbutton" class="submit-button" type="button">Login</button>
+                <label id="login-error" class="form-error"l>Username or password incorrect</label>
+                <input id="login-username" type="text" placeholder="Username" autocomplete="username">
+                <input id="login-password" type="password" placeholder="Password" autocomplete="current-password">
+                <button id="login-button" class="submit-button" type="button">Login</button>
                 <button class="close-button" type="button">X</button>
-                <a id="showregister">Register an account.</a>
+                <a id="show-register">Register an account.</a>
             </form>
         </div>
         <div class="popup" id="register">
-            <form id="registerform" class="form">
+            <form id="register-form" class="form">
                 <h1><i class="fas fa-id-badge"></i></h1>
-                <label id="registererror" class="form-error"></label>
-                <input id="registerusername" type="text" placeholder="Username" autocomplete="username" required>
-                <input id="registerpassword" type="password" placeholder="Password" autocomplete="new-password" required>
+                <label id="register-error" class="form-error"></label>
+                <input id="register-username" type="text" placeholder="Username" autocomplete="off" required>
+                <input id="register-password" type="password" placeholder="Password" autocomplete="new-password" required>
                 <br/>
                 <label for="terms">Agree to terms and conditions?</label>
                 <input id="agreebox" type="checkbox" name="terms" required>
-                <button id="registerbutton" class="submit-button" type="button">Register</button>
+                <button id="register-button" class="submit-button" type="button">Register</button>
                 <button class="close-button" type="button">X</button>
-                <a class="showlogin">Login to an account.</a>
+                <a class="show-login">Login to an account.</a>
             </form>
         </div>
         <script src="script/main.js" defer></script>

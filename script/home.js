@@ -235,7 +235,7 @@ function playDiscAnimation() {
 function ejectDiscAnimation() {
     disc.style.animation = "play-disc 1s reverse";
     disc.style.animationPlayState = "running";
-    wallpaper.style.backgroundColor = "#b8c9dd";
+    wallpaper.style.backgroundColor = "";
     animating_disc = false;
 }
 

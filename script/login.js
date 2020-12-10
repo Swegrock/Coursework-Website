@@ -5,25 +5,25 @@ var register_showing = false;
 
 //Get the elements needed.
 const login_window = document.getElementById("login");
-const login_form = document.getElementById("loginform");
-const login_username = document.getElementById("loginusername");
-const login_password = document.getElementById("loginpassword");
-const login_button = document.getElementById("loginbutton");
-const login_error = document.getElementById("loginerror");
-const show_register_button = document.getElementById("showregister");
+const login_form = document.getElementById("login-form");
+const login_username = document.getElementById("login-username");
+const login_password = document.getElementById("login-password");
+const login_button = document.getElementById("login-button");
+const login_error = document.getElementById("login-error");
+const show_register_button = document.getElementById("show-register");
 
 const register_window = document.getElementById("register");
-const register_form = document.getElementById("registerform");
-const register_username = document.getElementById("registerusername");
-const register_password = document.getElementById("registerpassword");
-const register_button = document.getElementById("registerbutton");
-const register_error = document.getElementById("registererror");
+const register_form = document.getElementById("register-form");
+const register_username = document.getElementById("register-username");
+const register_password = document.getElementById("register-password");
+const register_button = document.getElementById("register-button");
+const register_error = document.getElementById("register-error");
 
 const dimmer = document.querySelector(".dimmer");
 
 const close_buttons = document.querySelectorAll(".close-button");
-const show_login_buttons = document.querySelectorAll(".showlogin");
-const logout_user_buttons = document.querySelectorAll(".logoutuser");
+const show_login_buttons = document.querySelectorAll(".show-login");
+const logout_user_buttons = document.querySelectorAll(".logout-user");
 
 //The starting method.
 function start() {

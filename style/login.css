@@ -12,6 +12,7 @@
     box-shadow: 15px 5px 30px #00000020;
     border: #3f5562 outset 5px;
     color: #00c2cb;
+    z-index: 2;
 }
 
 .dimmer {
@@ -24,6 +25,7 @@
     display: none;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    z-index: 2;
 }
 
 .form h1{

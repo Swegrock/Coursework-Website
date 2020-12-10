@@ -9,7 +9,9 @@ const home = document.getElementById("home-button");
 const cv = document.getElementById("cv-button");
 const login = document.getElementById("login-menu-button");
 const logout = document.getElementById("logout-menu-button");
-const edit_icon = document.getElementById("edit-icon");
+const new_button = document.getElementById("new-button");
+const add_icon = document.getElementById("add-icon");
+const view_icon = document.getElementById("view-icon");
 const arrow = document.getElementById("arrow");
 
 //Get all header buttons for mobile usage.
@@ -56,21 +58,23 @@ function showNav() {
         logo.style.opacity = 1;
         home.style.opacity = 1;
         cv.style.opacity = 1;
-
+        view_icon.style.opacity = 1;
         //Get the logged in user.
         let user = sessionStorage.getItem("loggedin");
         //Check which login button to display and show the correct ones.
         if (user != null){
             logout.style.opacity = 1;
-            edit_icon.style.opacity = 1;
-            edit_icon.title = "User: " + user;
+            add_icon.style.opacity = 1;
             logout.style.cursor = "pointer";
             login.style.display = "none";
+            login.style.pointerEvents = "none";
         }
         else {
+            new_button.style.pointerEvents = "none";
             login.style.opacity = 1;
             login.style.cursor = "pointer";
             logout.style.display = "none";
+            logout.style.pointerEvents = "none";
         }
     }, 10);
 }
@@ -89,7 +93,8 @@ function hideNav() {
         cv.style.opacity = 0;
         login.style.opacity = 0;
         logout.style.opacity = 0;
-        edit_icon.style.opacity = 0;
+        add_icon.style.opacity = 0;
+        view_icon.style.opacity = 0;
         login.style.cursor = "";
         logout.style.cursor = "";
         navbar.style.height = "50%";
