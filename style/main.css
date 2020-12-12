@@ -46,6 +46,7 @@ header nav {
     background-color: #3f5562;
     padding: 2px 10px;
     transition: height 200ms;
+    box-shadow: 5px 5px 30px #00000060;
 }
 
 header img {
@@ -113,8 +114,8 @@ footer h1 {
 }
 
 #wallpaper {
-    background-color: #ba6b5d;
-    background-image: linear-gradient(to right, #d5eaf120, #ffffff00 10%, #ffffff00 90%, #d5eaf120), linear-gradient(90deg, #d5eaf120 25%, transparent 25%, transparent 75%, #d5eaf120 75%, #d5eaf120), linear-gradient(90deg, #d5eaf120 25%, transparent 25%, transparent 75%, #d5eaf120 75%, #d5eaf120), linear-gradient(to bottom, #e0f0f720, #f2fafd20);
+    background-color: #635582;
+    background-image: linear-gradient(to right, #d5eaf110, #ffffff00 10%, #ffffff00 90%, #d5eaf110), linear-gradient(90deg, #d5eaf110 25%, transparent 25%, transparent 75%, #d5eaf110 75%, #d5eaf110), linear-gradient(90deg, #d5eaf110 25%, transparent 25%, transparent 75%, #d5eaf110 75%, #d5eaf110), linear-gradient(to bottom, #e0f0f710, #f2fafd10);
     background-size: 20px 20px;
     transition: background-color 300ms;
     box-shadow: inset 2px 2px 10px #00000040;

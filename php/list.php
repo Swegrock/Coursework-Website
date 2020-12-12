@@ -3,7 +3,7 @@
 This contains the get all method used for retrieving all events.
 */
 
-require 'eventhandling.php';
+require 'events.php';
 
 /*
 This method gets all the ids for the events so we can list them.

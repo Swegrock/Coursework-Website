@@ -227,7 +227,7 @@ function turnVolumeOff() {
 //Play the disc insertion and playing animations.
 function playDiscAnimation() {
     disc.style.animation = "spin-disc 300ms infinite linear";
-    wallpaper.style.backgroundColor = "#333030";
+    wallpaper.style.backgroundColor = "black";
     animating_disc = false;
 }
 

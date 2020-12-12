@@ -32,6 +32,10 @@ function start() {
     register_button.addEventListener("click", registerUser);
     login_button.addEventListener("click", loginUser);
 
+    //Assign the press enter to login mechanism.
+    login_username.addEventListener("keypress", keyPressedLogin);
+    login_password.addEventListener("keypress", keyPressedLogin);
+
     //Clicking the dimmer will cause all the open forms to close.
     //This is common practice for websites and has been observed all over.
     dimmer.addEventListener("click", closeForms);
@@ -72,28 +76,38 @@ function hideLogin() {
     }, 1000);
 }
 
-//Tries to log the user in.
-function loginUser() {
-    //Get the password stored in the local storage value.
-    let password = localStorage.getItem(login_username.value);
-    //Firstly we want to check to see if the login usernames key correlates to the password value in the storage.
-    if (password === login_password.value){
-        //If it does, we'll log in for the session.
-        sessionStorage.setItem('loggedin', login_username.value);
-        location.reload();
-    }
-    else {
-        //If not we need to notify the user we haven't been successful by showing the error message and shaking the window.
-        shakeWindow(login_window);
-        login_error.style.display = "block";
+//When the enter key is pressed we want to login.
+function keyPressedLogin(eventArgs) {
+    if (eventArgs.keyCode == 13) {
+        loginUser();
     }
 }
 
-//Logout the currently logged in user by deleting the session storage.
+//Tries to log the user in.
+function loginUser() {
+    //Firstly we want to check to see if the login usernames key correlates to the password value in the storage.
+    attemptLoginUser(login_username.value, login_password.value);
+}
+
+//Logout the currently logged in user.
 function logoutUser() {
-    if (sessionStorage.getItem("loggedin") == null) return;
-    sessionStorage.removeItem("loggedin");
+    //Send a request to logout the account.
+    var request = new XMLHttpRequest();
+    request.addEventListener("readystatechange", logoutAccountResponse);
+    request.open("GET", "php/account.php?logout");
+    request.send();
     location.reload();
+}
+
+//The response for the logging in.
+function logoutAccountResponse() {
+    //Check the response type.
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        //1 indicates a successful account creation.
+        if (this.responseText == "1") {
+            location.reload();
+        }
+    }
 }
 
 //Show the register window.
@@ -137,21 +151,70 @@ function registerUser() {
         //Return so the registration doesn't complete.
         return;
     }
-    //We also want to make sure the username isn't already in use.
-    if (localStorage.getItem(register_username.value) != null) {
-        //Shake the window to visually show something is wrong.
-        shakeWindow(register_window);
-        //Tell them the username is in use.
-        register_error.innerHTML = "Username is already in use.";
-        //Show the error message.
-        register_error.style.display = "block";
-        //Return so the registration doesn't complete.
-        return;
+    //Then we can try and create a new user.
+    createAccount(register_username.value, register_password.value);
+}
+
+//Create a new user account.
+function createAccount(username, password) {
+    //Send a request to create the account.
+    var request = new XMLHttpRequest();
+    request.addEventListener("readystatechange", createAccountResponse);
+    request.open("GET", "php/account.php?add&username="+ username + "&password=" + password, true);
+    request.send();
+}
+
+//The response for the account creation.
+function createAccountResponse() {
+    //Check the response type.
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        //1 indicates a successful account creation.
+        if (this.responseText == "1") {
+            //So we can show the login form.
+            showLogin();
+        }
+        //If the account was not created successfully we can assume the username is in use.
+        else {
+            //Shake the window to visually show something is wrong.
+            shakeWindow(register_window);
+            //Tell them the username is in use.
+            register_error.innerHTML = "Username is already in use.";
+            //Show the error message.
+            register_error.style.display = "block";
+            //Return so the registration doesn't complete.
+            return;
+        }
     }
-    //Then we can create a new user.
-    localStorage.setItem(register_username.value, register_password.value);
-    //If all has worked we can now show the login form.
-    showLogin();
+}
+
+//Try to login the user.
+function attemptLoginUser(username, password) {
+    //Send a request to create the account.
+    var request = new XMLHttpRequest();
+    request.addEventListener("readystatechange", loginAccountResponse);
+    console.log("php/account.php?login&username="+ username + "&password=" + password);
+    request.open("GET", "php/account.php?login&username="+ username + "&password=" + password, true);
+    request.send();
+}
+
+//The response for the logging in.
+function loginAccountResponse() {
+    //Check the response type.
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        //1 indicates a successful account creation.
+        if (this.responseText == "1") {
+            location.reload();
+        }
+        //If the username or password was wrong.
+        else {
+            //Shake the window to visually show something is wrong.
+            shakeWindow(login_window);
+            //Tell them that the Username or password is incorrect.
+            login_error.innerHTML = "Username or password incorrect";
+            //Show the error message.
+            login_error.style.display = "block";
+        }
+    }
 }
 
 //Plays a small shaking animation on the window.

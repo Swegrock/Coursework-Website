@@ -35,7 +35,19 @@ This method just takes a building to get the map for.
 */
 function generateMapUrl($building) {
     $encoded = encodeURI($building);
-    $request = "https://maps.google.com/maps?q=Keele+University+ST5+" . $encoded . "&t=k&z=15&output=embed";
+    $request = "https://maps.google.com/maps?q=Keele+University+ST5+" . $encoded . "&t=k&z=17&output=embed";
     return $request;
+}
+
+/*
+Method for checking if supplied values are safe to insert into the webpage.
+Takes a value to investigate returns true if safe and false if not.
+Code injection is common place and .
+*/
+function checkSafe($value) {
+    if (!strpos($value, '<') && !strpos($value, '>')){
+        return true;
+    }
+    return false;
 }
 ?>

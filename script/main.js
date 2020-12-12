@@ -2,6 +2,9 @@
 //And also some children have delayed animations which would need to be cancelled.
 var navbar_shown = false;
 
+//The variable which determines whether we're logged in or not.
+var logged_in = false;
+
 //Get the elements needed.
 const navbar = document.querySelector("nav");
 const logo = document.getElementById("logo");
@@ -25,11 +28,27 @@ function start() {
     //We want to distinguish whether we should use pc or mobile interaction.
     //Pc interaction occurs on hover where as mobile interaction occurs on press.
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        window.addEventListener("mousedown", mobileNavHandler);
+        window.addEventListener("click", mobileNavHandler);
     }
     else {
         navbar.addEventListener("mouseover", showNav);
         navbar.addEventListener("mouseleave", hideNav);
+    }
+
+    var request = new XMLHttpRequest();
+    request.addEventListener("readystatechange", loggedInResponse);
+    request.open("GET", "php/account.php?logged=true", true);
+    request.send();
+}
+
+//The response for the getting the login info.
+function loggedInResponse() {
+    //Check the response type.
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        //1 indicates a successful account creation.
+        if (this.responseText == "1") {
+            logged_in = true;
+        }
     }
 }
 
@@ -59,10 +78,8 @@ function showNav() {
         home.style.opacity = 1;
         cv.style.opacity = 1;
         view_icon.style.opacity = 1;
-        //Get the logged in user.
-        let user = sessionStorage.getItem("loggedin");
         //Check which login button to display and show the correct ones.
-        if (user != null){
+        if (logged_in){
             logout.style.opacity = 1;
             add_icon.style.opacity = 1;
             logout.style.cursor = "pointer";

@@ -5,7 +5,7 @@
     margin: 20px auto 0 auto;
     max-width: 950px;
     box-sizing: border-box;
-    background-image: linear-gradient(#e9e9e9 0%, #d8d8d8 10%, #b3b3b3 50%, #959595 100%);
+    background-image: linear-gradient(#c9c9c9 0%, #9a9a9a 10%, #919191 50%, #7e7e7e 100%);
     background-size: 100%;
     border-radius: 90px 90px 0 0;
     box-shadow: 15px 5px 30px #00000020;
@@ -404,6 +404,10 @@ ul li {
     .account {
         margin: 10% 5px 0;
     }
+
+    .handle {
+        display: none;
+    }
 }
 
 /* When the screen width is less than 600px make these adjustments. */
@@ -429,5 +433,9 @@ ul li {
     
     #project-container {
         margin-bottom: 200px;
+    }
+
+    ul li {
+        font-size: 10px;
     }
 }

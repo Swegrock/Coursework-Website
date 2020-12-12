@@ -100,6 +100,10 @@
     background-color: #ffffff50;
 }
 
+.notepad-hover-show p {
+    font-family: 'Indie Flower', cursive;
+}
+
 .notepad-multiple-display {
     margin: 7% auto 10%;
     width: fit-content;
@@ -307,5 +311,10 @@
 
     .notepad-multiple-display h1 {
         text-align: left;
+    }
+
+    .notepad-multiple {
+        margin: 10px 0;
+        width: 100%;
     }
 }
